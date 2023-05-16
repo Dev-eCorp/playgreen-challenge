@@ -6,6 +6,9 @@ const lightTheme = {
   inputColor: "#3C3C3C",
   floatinButonBackground: "#181828",
   themeImage: "/darkmode.png",
+  bottomNavBackground: "#FFFFFF",
+  bottomNavIconColor: "#1A5BE1",
+  bottomNavBackgroundIconColor: "#F5F5F5",
 };
 
 const darkTheme = {
@@ -16,6 +19,9 @@ const darkTheme = {
   inputColor: "#FEFEFE",
   floatinButonBackground: "#F3F3F3",
   themeImage: "/lightmode.png",
+  bottomNavBackground: "#2C2B3E",
+  bottomNavIconColor: "#FFFFFF",
+  bottomNavBackgroundIconColor: "#1F1F31",
 };
 
 export { lightTheme, darkTheme };

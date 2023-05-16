@@ -89,3 +89,28 @@ export const ThemeToggleButton = styled.button<{ isLightTheme: boolean }>`
   background-repeat: no-repeat;
   background-position: center;
 `;
+
+export const BottomNav = styled.div<{ isLightTheme: boolean }>`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  height: 80px;
+  left: auto;
+  margin-bottom: 24px;
+  border-radius: 24px;
+  background-color: ${(props) => props.theme.bottomNavBackground};
+`;
+
+export const BottomNavItem = styled.div<{ isActive: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 60px;
+  border-radius: 18px;
+  background: ${(props) =>
+    props.isActive ? props.theme.bottomNavBackgroundIconColor : "transparent"};
+`;
