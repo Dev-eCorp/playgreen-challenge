@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { auth } from "../../firebaseClient";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   StyledButton,
   StyledContainer,
@@ -13,26 +11,16 @@ import {
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../styles/theme";
 import FloatingLabelInput from "./FloatingLabelInput";
+import useAuth from "../hooks/useAuth";
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isLightTheme, setIsLightTheme] = useState(true);
+  const { email, setEmail, password, setPassword, signIn } = useAuth();
 
   useEffect(() => {
     setIsLoading(false);
   }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const log = await signInWithEmailAndPassword(auth, email, password);
-      console.log(log);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
@@ -48,7 +36,7 @@ const LoginPage = () => {
           <StyledText>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </StyledText>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={signIn}>
             <FloatingLabelInput
               id="user"
               label="User"
