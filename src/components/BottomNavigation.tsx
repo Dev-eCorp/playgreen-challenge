@@ -1,11 +1,13 @@
 import React, { useState, FC } from "react";
-import { useRouter } from "next/router";
 import { BottomNav, BottomNavItem } from "../styles/styles";
 import { HomeIcon, OutIcon, ClockIcon } from "./icons/index";
 import useLogout from "../hooks/useLogout";
 
 type Props = {
   isLightTheme: boolean;
+  onClockIconClick: () => void;
+  onHomeIconClick: () => void;
+  activeIcon: number;
 };
 
 type NavItem = {
@@ -14,13 +16,17 @@ type NavItem = {
   onClick?: () => void;
 };
 
-const BottomNavigation: FC<Props> = ({ isLightTheme }) => {
-  const [activeItem, setActiveItem] = useState(0);
+const BottomNavigation: FC<Props> = ({
+  isLightTheme,
+  onClockIconClick,
+  onHomeIconClick,
+  activeIcon,
+}) => {
   const logout = useLogout();
 
   const navItems: NavItem[] = [
-    { icon: HomeIcon, id: 0 },
-    { icon: ClockIcon, id: 1 },
+    { icon: HomeIcon, id: 0, onClick: onHomeIconClick },
+    { icon: ClockIcon, id: 1, onClick: onClockIconClick },
     { icon: OutIcon, id: 2, onClick: logout },
   ];
 
@@ -29,13 +35,12 @@ const BottomNavigation: FC<Props> = ({ isLightTheme }) => {
       {navItems.map(({ icon: Icon, id, onClick }) => (
         <BottomNavItem
           key={id}
-          isActive={activeItem === id}
+          isActive={activeIcon === id}
           onClick={() => {
-            setActiveItem(id);
             if (onClick) onClick();
           }}
         >
-          <Icon isActive={activeItem === id} />
+          <Icon isActive={activeIcon === id} />
         </BottomNavItem>
       ))}
     </BottomNav>

@@ -63,6 +63,16 @@ export const StyledText = styled.p`
   text-align: center;
 `;
 
+export const StyledTextDate = styled.p`
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: ${(props) => props.theme.text};
+  opacity: 0.8;
+  text-align: center;
+`;
+
 export const StyledLink = styled.a`
   font-style: normal;
   font-weight: 400;
@@ -123,7 +133,7 @@ export const CardHistoryContainer = styled.div<{ isLightTheme: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 326px;
+  width: 100%;
   height: 77px;
   border-radius: 12px;
   background-color: ${(props) => props.theme.historyCardBackground};
