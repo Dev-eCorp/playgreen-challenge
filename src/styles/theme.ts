@@ -9,6 +9,7 @@ const lightTheme = {
   bottomNavBackground: "#FFFFFF",
   bottomNavIconColor: "#1A5BE1",
   bottomNavBackgroundIconColor: "#F5F5F5",
+  historyCardBackground: "#FFFFFF",
 };
 
 const darkTheme = {
@@ -22,6 +23,7 @@ const darkTheme = {
   bottomNavBackground: "#2C2B3E",
   bottomNavIconColor: "#FFFFFF",
   bottomNavBackgroundIconColor: "#1F1F31",
+  historyCardBackground: "#212135",
 };
 
 export { lightTheme, darkTheme };
