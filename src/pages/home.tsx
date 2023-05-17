@@ -3,6 +3,8 @@ import { StyledContainer, ThemeToggleButton } from "../styles/styles";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../styles/theme";
 import BottomNavigation from "../components/BottomNavigation";
+import HistoryCard from "../components/HistoryCard";
+import { LoveIcon, CloseIcon } from "../components/icons";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +22,20 @@ export default function Home() {
           <ThemeToggleButton
             onClick={() => setIsLightTheme(!isLightTheme)}
             isLightTheme={isLightTheme}
+          />
+          <HistoryCard
+            isLightTheme={isLightTheme}
+            sportImg="https://upload.wikimedia.org/wikipedia/commons/a/ad/Football_in_Bloomington%2C_Indiana%2C_1996.jpg"
+            sportTitle="Football"
+            Icon={LoveIcon}
+            color={isLightTheme}
+          />
+          <HistoryCard
+            isLightTheme={isLightTheme}
+            sportImg="https://upload.wikimedia.org/wikipedia/commons/a/ad/Football_in_Bloomington%2C_Indiana%2C_1996.jpg"
+            sportTitle="Football"
+            Icon={CloseIcon}
+            color={true}
           />
           <BottomNavigation isLightTheme={isLightTheme} />
         </StyledContainer>

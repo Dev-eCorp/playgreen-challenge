@@ -74,6 +74,8 @@ export const StyledLink = styled.a`
   margin-bottom: 18px;
 `;
 
+// Bottom Navigation
+
 export const ThemeToggleButton = styled.button<{ isLightTheme: boolean }>`
   width: 48px;
   height: 48px;
@@ -113,4 +115,56 @@ export const BottomNavItem = styled.div<{ isActive: boolean }>`
   border-radius: 18px;
   background: ${(props) =>
     props.isActive ? props.theme.bottomNavBackgroundIconColor : "transparent"};
+`;
+
+// History
+
+export const CardHistoryContainer = styled.div<{ isLightTheme: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 326px;
+  height: 77px;
+  border-radius: 12px;
+  background-color: ${(props) => props.theme.historyCardBackground};
+  position: relative;
+  margin-bottom: 24px;
+`;
+
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 80%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+`;
+
+export const ImageOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.51);
+  z-index: 1;
+`;
+
+export const SportTitle = styled.p`
+  position: absolute;
+  left: 24px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: #fefefe;
+  z-index: 2;
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 77px;
+  height: 100%;
+  flex: 1;
 `;
