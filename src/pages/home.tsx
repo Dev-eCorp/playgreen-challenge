@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 import { StyledContainer, ThemeToggleButton } from "../styles/styles";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../styles/theme";
@@ -7,8 +9,18 @@ import HistoryCard from "../components/HistoryCard";
 import { LoveIcon, CloseIcon } from "../components/icons";
 
 export default function Home() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isLightTheme, setIsLightTheme] = useState(true);
+
+  useEffect(() => {
+    const token = Cookies.get("auth");
+    if (!token) {
+      router.replace("/");
+    } else {
+      setIsLoading(false);
+    }
+  }, [router]);
 
   useEffect(() => {
     setIsLoading(false);
