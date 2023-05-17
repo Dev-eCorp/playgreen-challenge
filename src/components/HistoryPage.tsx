@@ -53,7 +53,7 @@ const HistoryPage: FC<Props> = ({
             History
           </StyledTitle>
           <StyledText style={{ textAlign: "left", marginBottom: "0px" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit .
           </StyledText>
           <StyledTextDate>17 december</StyledTextDate>
 
