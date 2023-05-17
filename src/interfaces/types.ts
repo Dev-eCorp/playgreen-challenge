@@ -1,10 +1,8 @@
 export interface Sport {
-  idSport: string;
-  strSport: string;
-  strFormat: string;
-  strSportThumb: string;
-  strSportIconGreen: string;
-  strSportDescription: string;
+  id: number;
+  title: string;
+  imagenHome: string;
+  imagenHistory: string;
 }
 
 export interface isActive {

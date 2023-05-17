@@ -178,9 +178,9 @@ export const IconContainer = styled.div`
 
 // Home Page
 export const HomePageImage = styled.img`
-  width: 100%;
-  height: 70vh;
-  object-fit: cover;
+  width: 100vw;
+  height: 600px;
+  object-fit: fill;
   position: absolute;
   top: 0;
   left: 0;
@@ -194,7 +194,7 @@ export const IconsContainer = styled.div`
   align-items: center;
   width: 60%;
   padding: 20px 0;
-  padding-top: 40px;
+  padding-top: 160px;
 `;
 
 export const CloseIconContainer = styled.div<{ isLightTheme: boolean }>`
