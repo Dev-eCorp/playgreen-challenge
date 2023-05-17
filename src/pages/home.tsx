@@ -30,7 +30,7 @@ export default function Home() {
     if (sportsData.length > 0) {
       const images = sportsData.map((sport) => {
         const img = new Image();
-        img.src = sport.strSportThumb;
+        img.src = sport.imagenHome;
         return img;
       });
       setPreloadedImages(images);
@@ -55,6 +55,7 @@ export default function Home() {
 
   const onSwipeRight = () => {
     swipe("right");
+    console.log("righ");
   };
 
   const onSwipeLeft = () => {
@@ -62,9 +63,17 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetch("https://www.thesportsdb.com/api/v1/json/60130162/all_sports.php")
+    fetch("/api/sports")
       .then((response) => response.json())
-      .then((data) => setSportsData(data.sports))
+      .then((data) => {
+        setSportsData(data);
+        const images = data.map((item: any) => {
+          const img = new Image();
+          img.src = item.imagenHome;
+          return img;
+        });
+        setPreloadedImages(images);
+      })
       .catch((error) => console.error(error));
   }, []);
 
@@ -97,14 +106,14 @@ export default function Home() {
                 <div
                   style={{
                     position: "relative",
-                    width: "100%",
-                    height: "70vh",
+                    width: "100vw",
+                    height: "500px",
                   }}
                 >
                   <animated.div style={imageStyles}>
                     <HomePageImage
                       src={preloadedImages[currentImageIndex]?.src || ""}
-                      alt={sportsData[currentImageIndex]?.strSport || ""}
+                      alt={sportsData[currentImageIndex]?.title || ""}
                     />
                   </animated.div>
                 </div>

@@ -63,10 +63,10 @@ const HistoryPage: FC<Props> = ({
 
           {sportsData.slice(0, 4).map((sport, index) => (
             <HistoryCard
-              key={sport.idSport}
+              key={sport.id}
               isLightTheme={isLightTheme}
-              sportImg={sport.strSportThumb}
-              sportTitle={sport.strSport}
+              sportImg={sport.imagenHistory}
+              sportTitle={sport.title}
               Icon={index % 2 === 0 ? LoveIcon : CloseIcon}
               color={isLightTheme}
             />
