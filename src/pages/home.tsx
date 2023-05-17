@@ -5,13 +5,15 @@ import { StyledContainer, ThemeToggleButton } from "../styles/styles";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../styles/theme";
 import BottomNavigation from "../components/BottomNavigation";
-import HistoryCard from "../components/HistoryCard";
-import { LoveIcon, CloseIcon } from "../components/icons";
+
+import HistoryPage from "../components/HistoryPage";
 
 export default function Home() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isLightTheme, setIsLightTheme] = useState(true);
+  const [showHistory, setShowHistory] = useState(false);
+  const [activeIcon, setActiveIcon] = useState(0);
 
   useEffect(() => {
     const token = Cookies.get("auth");
@@ -31,25 +33,33 @@ export default function Home() {
         <div>Loading...</div>
       ) : (
         <StyledContainer>
-          <ThemeToggleButton
-            onClick={() => setIsLightTheme(!isLightTheme)}
+          {!showHistory && (
+            <ThemeToggleButton
+              onClick={() => setIsLightTheme(!isLightTheme)}
+              isLightTheme={isLightTheme}
+            />
+          )}
+          {showHistory && (
+            <>
+              <HistoryPage
+                setShowHistory={setShowHistory}
+                setActiveIcon={setActiveIcon}
+                isLightTheme={isLightTheme}
+              />
+            </>
+          )}
+          <BottomNavigation
             isLightTheme={isLightTheme}
+            onClockIconClick={() => {
+              setShowHistory(true);
+              setActiveIcon(1);
+            }}
+            onHomeIconClick={() => {
+              setShowHistory(false);
+              setActiveIcon(0);
+            }}
+            activeIcon={activeIcon}
           />
-          <HistoryCard
-            isLightTheme={isLightTheme}
-            sportImg="https://upload.wikimedia.org/wikipedia/commons/a/ad/Football_in_Bloomington%2C_Indiana%2C_1996.jpg"
-            sportTitle="Football"
-            Icon={LoveIcon}
-            color={isLightTheme}
-          />
-          <HistoryCard
-            isLightTheme={isLightTheme}
-            sportImg="https://upload.wikimedia.org/wikipedia/commons/a/ad/Football_in_Bloomington%2C_Indiana%2C_1996.jpg"
-            sportTitle="Football"
-            Icon={CloseIcon}
-            color={true}
-          />
-          <BottomNavigation isLightTheme={isLightTheme} />
         </StyledContainer>
       )}
     </ThemeProvider>

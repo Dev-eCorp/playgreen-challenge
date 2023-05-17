@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 import {
   StyledButton,
   StyledContainer,
@@ -16,19 +14,9 @@ import FloatingLabelInput from "./FloatingLabelInput";
 import useAuth from "../hooks/useAuth";
 
 const LoginPage = () => {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isLightTheme, setIsLightTheme] = useState(true);
   const { email, setEmail, password, setPassword, signIn } = useAuth();
-
-  useEffect(() => {
-    const token = Cookies.get("auth");
-    if (token) {
-      router.replace("/home");
-    } else {
-      setIsLoading(false);
-    }
-  }, [router]);
 
   useEffect(() => {
     setIsLoading(false);
