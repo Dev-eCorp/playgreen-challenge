@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FC } from "react";
 import styled from "styled-components";
-import { StyledInput } from "../styles/styles";
+import { StyledInput } from "../../styles/styles";
 
 interface LabelProps {
   hasValue: boolean;

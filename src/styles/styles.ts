@@ -178,3 +178,45 @@ export const IconContainer = styled.div`
   height: 100%;
   flex: 1;
 `;
+
+// Home Page
+export const HomePageImage = styled.img`
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  border-bottom-left-radius: 34px;
+  border-bottom-right-radius: 34px;
+`;
+
+export const IconsContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  padding: 20px 0;
+  margin-top: 58vh;
+`;
+
+export const CloseIconContainer = styled.div<{ isLightTheme: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: ${(props) => (props.isLightTheme ? "#FFFFFF" : "#222243")};
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+`;
+
+export const LoveIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(125.02deg, #236bfe -17.11%, #063ba8 98.58%);
+  box-shadow: 0px 10px 25px rgba(35, 107, 254, 0.2);
+`;
