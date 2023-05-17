@@ -8,9 +8,6 @@ export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-left: 30px;
-  padding-right: 30px;
   letter-spacing: 1px;
 `;
 
@@ -186,6 +183,7 @@ export const HomePageImage = styled.img`
   object-fit: cover;
   position: absolute;
   top: 0;
+  left: 0;
   border-bottom-left-radius: 34px;
   border-bottom-right-radius: 34px;
 `;
@@ -196,7 +194,7 @@ export const IconsContainer = styled.div`
   align-items: center;
   width: 60%;
   padding: 20px 0;
-  margin-top: 58vh;
+  padding-top: 40px;
 `;
 
 export const CloseIconContainer = styled.div<{ isLightTheme: boolean }>`

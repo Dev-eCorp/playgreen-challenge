@@ -27,13 +27,13 @@ const LoginPage = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <StyledContainer>
+        <StyledContainer style={{ justifyContent: "center" }}>
           <ThemeToggleButton
             onClick={() => setIsLightTheme(!isLightTheme)}
             isLightTheme={isLightTheme}
           />
           <StyledTitle>Welcome</StyledTitle>
-          <StyledText>
+          <StyledText style={{ padding: "0px 30px" }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </StyledText>
           <form onSubmit={signIn}>
