@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import LoginPage from "../components/LoginPage";
+import LoginPage from "../components/templates/LoginPage";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 

@@ -1,11 +1,8 @@
 import React, { FC, useContext } from "react";
 import { ThemeContext } from "styled-components";
+import { isActive } from "../../interfaces/types";
 
-type Props = {
-  isActive: boolean;
-};
-
-const HomeIcon: FC<Props> = ({ isActive }) => {
+const HomeIcon: FC<isActive> = ({ isActive }) => {
   const theme = useContext(ThemeContext);
 
   return (

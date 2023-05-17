@@ -5,7 +5,7 @@ import {
   SportTitle,
   IconContainer,
   ImageOverlay,
-} from "../styles/styles";
+} from "../../styles/styles";
 import Image from "next/image";
 
 type IconProps = {

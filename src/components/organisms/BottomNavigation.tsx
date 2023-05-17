@@ -1,7 +1,7 @@
-import React, { useState, FC } from "react";
-import { BottomNav, BottomNavItem } from "../styles/styles";
-import { HomeIcon, OutIcon, ClockIcon } from "./icons/index";
-import useLogout from "../hooks/useLogout";
+import React, { FC } from "react";
+import { BottomNav, BottomNavItem } from "../../styles/styles";
+import { HomeIcon, OutIcon, ClockIcon } from "../icons/index";
+import useLogout from "../../hooks/useLogout";
 
 type Props = {
   isLightTheme: boolean;
@@ -11,7 +11,7 @@ type Props = {
 };
 
 type NavItem = {
-  icon: React.FC<{ isActive: boolean }>;
+  icon: FC<{ isActive: boolean }>;
   id: number;
   onClick?: () => void;
 };
