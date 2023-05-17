@@ -10,9 +10,11 @@ import { LoveIcon, CloseIcon } from "../icons";
 
 type Props = {
   isLightTheme: boolean;
+  onSwipeRight: () => void;
+  onSwipeLeft: () => void;
 };
 
-const HomePage: FC<Props> = ({ isLightTheme }) => {
+const HomePage: FC<Props> = ({ isLightTheme, onSwipeRight, onSwipeLeft }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,10 +27,10 @@ const HomePage: FC<Props> = ({ isLightTheme }) => {
         <div>Loading...</div>
       ) : (
         <IconsContainer>
-          <CloseIconContainer isLightTheme={isLightTheme}>
+          <CloseIconContainer isLightTheme={isLightTheme} onClick={onSwipeLeft}>
             <CloseIcon color={isLightTheme} isHomePage={true} />
           </CloseIconContainer>
-          <LoveIconContainer>
+          <LoveIconContainer onClick={onSwipeRight}>
             <LoveIcon color={false} />
           </LoveIconContainer>
         </IconsContainer>

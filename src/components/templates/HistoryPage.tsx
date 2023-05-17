@@ -42,6 +42,7 @@ const HistoryPage: FC<Props> = ({
             paddingRight: "0px",
             justifyContent: "flex-start",
             marginTop: "60px",
+            padding: "0px 30px",
           }}
         >
           <div

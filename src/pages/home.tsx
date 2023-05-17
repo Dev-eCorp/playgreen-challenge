@@ -9,10 +9,10 @@ import {
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../styles/theme";
 import BottomNavigation from "../components/organisms/BottomNavigation";
-
 import HistoryPage from "../components/templates/HistoryPage";
 import HomePage from "../components/templates/HomePage";
 import { Sport } from "../interfaces/types";
+import { useSpring, animated } from "react-spring";
 
 export default function Home() {
   const router = useRouter();
@@ -21,6 +21,45 @@ export default function Home() {
   const [showHistory, setShowHistory] = useState(false);
   const [activeIcon, setActiveIcon] = useState(0);
   const [sportsData, setSportsData] = useState<Sport[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
+    []
+  );
+
+  useEffect(() => {
+    if (sportsData.length > 0) {
+      const images = sportsData.map((sport) => {
+        const img = new Image();
+        img.src = sport.strSportThumb;
+        return img;
+      });
+      setPreloadedImages(images);
+    }
+  }, [sportsData]);
+
+  const swipe = (direction: string) => {
+    setImageStyles({
+      transform: `translateX(${direction === "right" ? 600 : -600}px)`,
+    });
+    setTimeout(() => {
+      setImageStyles({ transform: "translateX(0px)" });
+      setCurrentImageIndex(
+        (currentImageIndex) => (currentImageIndex + 1) % sportsData.length
+      );
+    }, 200);
+  };
+
+  const [imageStyles, setImageStyles] = useSpring(() => ({
+    transform: "translateX(0px)",
+  }));
+
+  const onSwipeRight = () => {
+    swipe("right");
+  };
+
+  const onSwipeLeft = () => {
+    swipe("left");
+  };
 
   useEffect(() => {
     fetch("https://www.thesportsdb.com/api/v1/json/60130162/all_sports.php")
@@ -55,12 +94,26 @@ export default function Home() {
                 style={{ zIndex: 2 }}
               />
               {sportsData.length > 0 && (
-                <HomePageImage
-                  src={sportsData[0].strSportThumb}
-                  alt={sportsData[0].strSport}
-                />
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "70vh",
+                  }}
+                >
+                  <animated.div style={imageStyles}>
+                    <HomePageImage
+                      src={preloadedImages[currentImageIndex]?.src || ""}
+                      alt={sportsData[currentImageIndex]?.strSport || ""}
+                    />
+                  </animated.div>
+                </div>
               )}
-              <HomePage isLightTheme={isLightTheme} />
+              <HomePage
+                isLightTheme={isLightTheme}
+                onSwipeRight={onSwipeRight}
+                onSwipeLeft={onSwipeLeft}
+              />
             </>
           )}
           {showHistory && (
