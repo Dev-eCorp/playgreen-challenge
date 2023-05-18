@@ -1,4 +1,11 @@
-import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  getFirestore,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { auth } from "../../firebaseClient";
 
 const useSaveData = () => {
@@ -11,9 +18,16 @@ const useSaveData = () => {
 
     const userRef = doc(firestore, "users", auth.currentUser.uid);
 
-    await updateDoc(userRef, {
-      sportsData: arrayUnion(data),
-    });
+    const docSnap = await getDoc(userRef);
+    if (docSnap.exists()) {
+      await updateDoc(userRef, {
+        sportsData: arrayUnion(data),
+      });
+    } else {
+      await setDoc(userRef, {
+        sportsData: [data],
+      });
+    }
   };
 
   return saveData;
