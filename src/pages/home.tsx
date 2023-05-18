@@ -55,7 +55,6 @@ export default function Home() {
 
   const onSwipeRight = () => {
     swipe("right");
-    console.log("righ");
   };
 
   const onSwipeLeft = () => {
@@ -122,6 +121,7 @@ export default function Home() {
                 isLightTheme={isLightTheme}
                 onSwipeRight={onSwipeRight}
                 onSwipeLeft={onSwipeLeft}
+                currentSport={sportsData[currentImageIndex]}
               />
             </>
           )}
@@ -131,7 +131,6 @@ export default function Home() {
                 setShowHistory={setShowHistory}
                 setActiveIcon={setActiveIcon}
                 isLightTheme={isLightTheme}
-                sportsData={sportsData}
               />
             </>
           )}

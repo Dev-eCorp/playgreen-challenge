@@ -1,33 +1,45 @@
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, useEffect, FC, useCallback } from "react";
 import {
   StyledContainer,
   StyledTitle,
   StyledText,
   StyledTextDate,
+  StyledContainerHistory,
 } from "../../styles/styles";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../styles/theme";
 import HistoryCard from "../organisms/HistoryCard";
 import { LoveIcon, CloseIcon, LeftArrowIcon } from "../icons";
-import { Sport } from "../../interfaces/types";
+import { dbData } from "../../interfaces/types";
+import { useGetData } from "@/hooks";
 
 type Props = {
   setShowHistory: (show: boolean) => void;
   setActiveIcon: (iconId: number) => void;
   isLightTheme: boolean;
-  sportsData: Sport[];
 };
 
 const HistoryPage: FC<Props> = ({
   setShowHistory,
   setActiveIcon,
   isLightTheme,
-  sportsData,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [sportsData, setSportsData] = useState<dbData[]>([]);
+  const getData = useGetData();
 
   useEffect(() => {
-    setIsLoading(false);
+    const fetchData = async () => {
+      const data = await getData();
+      if (data) {
+        setSportsData(data);
+      } else {
+        setSportsData([]);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -35,16 +47,7 @@ const HistoryPage: FC<Props> = ({
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <StyledContainer
-          style={{
-            alignItems: "flex-start",
-            paddingLeft: "0px",
-            paddingRight: "0px",
-            justifyContent: "flex-start",
-            marginTop: "60px",
-            padding: "0px 30px",
-          }}
-        >
+        <StyledContainerHistory>
           <div
             onClick={() => {
               setShowHistory(false);
@@ -61,17 +64,17 @@ const HistoryPage: FC<Props> = ({
           </StyledText>
           <StyledTextDate>17 december</StyledTextDate>
 
-          {sportsData.slice(0, 4).map((sport, index) => (
+          {sportsData.map((sport, index) => (
             <HistoryCard
               key={sport.id}
               isLightTheme={isLightTheme}
               sportImg={sport.imagenHistory}
               sportTitle={sport.title}
-              Icon={index % 2 === 0 ? LoveIcon : CloseIcon}
+              Icon={sport.reaction === "like" ? LoveIcon : CloseIcon}
               color={isLightTheme}
             />
           ))}
-        </StyledContainer>
+        </StyledContainerHistory>
       )}
     </ThemeProvider>
   );

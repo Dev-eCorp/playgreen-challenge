@@ -11,7 +11,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../styles/theme";
 import FloatingLabelInput from "../organisms/FloatingLabelInput";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "@/hooks";
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(true);

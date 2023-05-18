@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { BottomNav, BottomNavItem } from "../../styles/styles";
 import { HomeIcon, OutIcon, ClockIcon } from "../icons/index";
-import useLogout from "../../hooks/useLogout";
+import { useLogout } from "@/hooks";
 
 type Props = {
   isLightTheme: boolean;
@@ -31,7 +31,7 @@ const BottomNavigation: FC<Props> = ({
   ];
 
   return (
-    <BottomNav isLightTheme={isLightTheme}>
+    <BottomNav isLightTheme={isLightTheme} style={{ zIndex: 2 }}>
       {navItems.map(({ icon: Icon, id, onClick }) => (
         <BottomNavItem
           key={id}
