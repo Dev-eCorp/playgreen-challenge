@@ -32,12 +32,7 @@ const HistoryCard: FC<Props> = ({
       <SportTitle>{sportTitle}</SportTitle>
       <ImageContainer>
         <ImageOverlay />
-        <Image
-          src={sportImg}
-          alt={sportTitle}
-          layout="fill"
-          objectFit="cover"
-        />
+        <Image src={sportImg} alt={sportTitle} layout="fill" />
       </ImageContainer>
       <IconContainer>
         <Icon color={color} />

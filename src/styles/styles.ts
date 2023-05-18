@@ -11,6 +11,21 @@ export const StyledContainer = styled.div`
   letter-spacing: 1px;
 `;
 
+export const StyledContainerHistory = styled.div`
+  font-family: "DM Sans";
+  background-color: ${(props) => props.theme.body};
+  color: ${(props) => props.theme.text};
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 60px;
+  padding: 0px 30px;
+  margin-bottom: 100px;
+`;
+
 export const StyledButton = styled.button`
   width: 122px;
   height: 66px;
