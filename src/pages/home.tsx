@@ -5,7 +5,10 @@ import {
   StyledContainer,
   ThemeToggleButton,
   HomePageImage,
-} from "../styles/styles";
+  HomePageContainer,
+  StyledTitle,
+  StyledTitleImageContainer,
+} from "@/components/atoms";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../styles/theme";
 import BottomNavigation from "../components/organisms/BottomNavigation";
@@ -13,6 +16,7 @@ import HistoryPage from "../components/templates/HistoryPage";
 import HomePage from "../components/templates/HomePage";
 import { Sport } from "../interfaces/types";
 import { useSpring, animated } from "react-spring";
+import PreloadPage from "../components/templates/PreloadPage";
 
 export default function Home() {
   const router = useRouter();
@@ -91,7 +95,7 @@ export default function Home() {
   return (
     <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
       {isLoading ? (
-        <div>Loading...</div>
+        <PreloadPage isLightTheme={isLightTheme} />
       ) : (
         <StyledContainer style={{ position: "relative" }}>
           {!showHistory && (
@@ -102,20 +106,25 @@ export default function Home() {
                 style={{ zIndex: 2 }}
               />
               {sportsData.length > 0 && (
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100vw",
-                    height: "500px",
-                  }}
-                >
+                <HomePageContainer>
                   <animated.div style={imageStyles}>
                     <HomePageImage
                       src={preloadedImages[currentImageIndex]?.src || ""}
                       alt={sportsData[currentImageIndex]?.title || ""}
                     />
+                    <StyledTitleImageContainer>
+                      <StyledTitle
+                        style={{
+                          padding: "16px 0px 18px 20px",
+                          background:
+                            "linear-gradient(360deg, #000000 0%, #000000 58.85%, rgba(0, 0, 0, 0) 100%)",
+                        }}
+                      >
+                        {sportsData[currentImageIndex]?.title || ""}
+                      </StyledTitle>
+                    </StyledTitleImageContainer>
                   </animated.div>
-                </div>
+                </HomePageContainer>
               )}
               <HomePage
                 isLightTheme={isLightTheme}
@@ -126,13 +135,11 @@ export default function Home() {
             </>
           )}
           {showHistory && (
-            <>
-              <HistoryPage
-                setShowHistory={setShowHistory}
-                setActiveIcon={setActiveIcon}
-                isLightTheme={isLightTheme}
-              />
-            </>
+            <HistoryPage
+              setShowHistory={setShowHistory}
+              setActiveIcon={setActiveIcon}
+              isLightTheme={isLightTheme}
+            />
           )}
           <BottomNavigation
             isLightTheme={isLightTheme}

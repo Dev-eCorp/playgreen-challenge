@@ -3,12 +3,13 @@ import {
   IconsContainer,
   CloseIconContainer,
   LoveIconContainer,
-} from "../../styles/styles";
+} from "../atoms";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../styles/theme";
 import { LoveIcon, CloseIcon } from "../icons";
 import { useSaveData } from "@/hooks";
 import { dbData } from "@/interfaces/types";
+import PreloadPage from "./PreloadPage";
 
 type Props = {
   isLightTheme: boolean;
@@ -27,7 +28,7 @@ const HomePage: FC<Props> = ({
   const saveData = useSaveData();
 
   const handleClick = async (reaction: "like" | "dislike") => {
-    const sportDataToSave = { ...currentSport, reaction }; // Usar currentSport en lugar de sportData
+    const sportDataToSave = { ...currentSport, reaction };
 
     try {
       await saveData(sportDataToSave);
@@ -43,7 +44,7 @@ const HomePage: FC<Props> = ({
   return (
     <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
       {isLoading ? (
-        <div>Loading...</div>
+        <PreloadPage isLightTheme={isLightTheme} />
       ) : (
         <IconsContainer>
           <CloseIconContainer

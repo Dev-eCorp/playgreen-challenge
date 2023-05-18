@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import {
   CardHistoryContainer,
   ImageContainer,
+  ImageOverlay,
   SportTitle,
   IconContainer,
-  ImageOverlay,
-} from "../../styles/styles";
+} from "@/components/atoms";
 import Image from "next/image";
 
 type IconProps = {

@@ -1,17 +1,17 @@
-import React, { useState, useEffect, FC, useCallback } from "react";
+import React, { useState, useEffect, FC } from "react";
 import {
-  StyledContainer,
   StyledTitle,
+  StyledContainerHistory,
   StyledText,
   StyledTextDate,
-  StyledContainerHistory,
-} from "../../styles/styles";
+} from "../atoms";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../styles/theme";
 import HistoryCard from "../organisms/HistoryCard";
 import { LoveIcon, CloseIcon, LeftArrowIcon } from "../icons";
 import { dbData } from "../../interfaces/types";
 import { useGetData } from "@/hooks";
+import PreloadPage from "./PreloadPage";
 
 type Props = {
   setShowHistory: (show: boolean) => void;
@@ -45,7 +45,7 @@ const HistoryPage: FC<Props> = ({
   return (
     <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
       {isLoading ? (
-        <div>Loading...</div>
+        <PreloadPage isLightTheme={isLightTheme} />
       ) : (
         <StyledContainerHistory>
           <div

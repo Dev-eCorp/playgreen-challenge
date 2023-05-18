@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FC } from "react";
 import styled from "styled-components";
-import { StyledInput } from "../../styles/styles";
+import { StyledInput, InputContainer } from "../atoms";
 
 interface LabelProps {
   hasValue: boolean;
@@ -37,12 +37,12 @@ const FloatingLabelInput: FC<FloatingLabelInputProps> = ({
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <InputContainer>
       <StyledInput {...props} id={id} onChange={handleChange} />
       <Label htmlFor={id} hasValue={hasValue}>
         {label}
       </Label>
-    </div>
+    </InputContainer>
   );
 };
 
