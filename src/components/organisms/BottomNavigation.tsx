@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { BottomNav, BottomNavItem } from "../../styles/styles";
+import { BottomNav, BottomNavItem } from "@/components/atoms";
 import { HomeIcon, OutIcon, ClockIcon } from "../icons/index";
 import { useLogout } from "@/hooks";
 
